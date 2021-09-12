@@ -1,7 +1,7 @@
-//Enclosed a program, which comprises the inference engine based on Forward chaining.  You need it for your
-//project #1.  The program contains some errors and it is not designed to be efficient.
-//Modify the program to make it better and efficient.  Explain in your report how you have modified the
-//program to make it better.
+////Enclosed a program, which comprises the inference engine based on Forward chaining.  You need it for your
+////project #1.  The program contains some errors and it is not designed to be efficient.
+////Modify the program to make it better and efficient.  Explain in your report how you have modified the
+////program to make it better.
 //
 ///*** FORWARD CHAINING ***/
 ///************************/
@@ -13,7 +13,9 @@
 //The THEN part of the above construction always contains
 //S-1. Install your THEN clauses in sequence in the middle
 //of the progrram within the second case statement. */
-//
+//using namespace std;
+//#include <string.h>
+//#include <iostream>
 //#include <stdio.h>
 //
 //int flag;
@@ -42,15 +44,15 @@
 //    for (i=1;i < 11; i++)
 //        strcpy(cndvar[i], "");
 //    for (i=1;i < 11; i++)
-//        strcpy(instlt[i], "");
+//        instlt[i] = 0;
 //    for (i=1;i < 11; i++)
 //        strcpy(varlt[i], "");
-//    for (i=1;i < 11; I++)
-//    {
-//        strcpy(cndvar[i], "");
-//        strcpy(varlt[i], "");
-//        strcpy (instlt[i], "");
-//    }
+////    for (i=1;i < 11; I++)
+////    {
+////        strcpy(cndvar[i], "");
+////        strcpy(varlt[i], "");
+////        strcpy (instlt[i], "");
+////    }
 //
 //    /* enter variables which are in the IF part, 1 at a time in
 //    the exact order that they occur. Up to 3 variables per
@@ -65,9 +67,12 @@
 //    strcpy(varlt[5], "ST");
 //
 //    printf("*** VARIABLE LIST ***\n");
+//    cout<<flush;
 //    for (i=1;i < 11; i++)
-//        printf("ENTER VARIABLE   %d   %s\n", i, varlt[i]);
+//    	printf("VARIABLE   %d   %s\n", i, varlt[i]);
+//
 //    printf("HIT RETURN TO CONTINUE");
+//    cout<<flush;
 //    getchar();
 //
 //    /* enter variables as they appear in the IF clauses, Up to 3
@@ -93,12 +98,15 @@
 //        if (i==4)
 //        {
 //            printf("HIT RETURN TO CONTINUE");
+//            cout<<flush;
 //            getchar();
 //        }
 //    }
 //
+//
 //    /****** INFERENCE SECTION *****************/
 //    printf("ENTER CONDITION VARIABLE? ");
+//    cout<<flush;
 //    gets(c);
 //    /* place condition variable c on condition var queue cndvar */
 //    strcpy(cndvar[bp], c);
@@ -180,6 +188,7 @@
 //        case 1:
 //            strcpy(stock, "RISE");
 //            printf("ST=RISE\n");
+//            cout<<flush;
 //            strcpy(v, "ST");
 //            instantiate();
 //            break;
@@ -188,6 +197,7 @@
 //        case 2:
 //            strcpy(stock, "FALL");
 //            printf("ST=FALL\n");
+//            cout<<flush;
 //            strcpy(v, "ST");
 //            instantiate();
 //            break;
@@ -196,6 +206,7 @@
 //        case 3:
 //            strcpy(interest, "RISE");
 //            printf("IN=RISE\n");
+//            cout<<flush;
 //            strcpy(v, "IN");
 //            instantiate();
 //            break;
@@ -204,6 +215,7 @@
 //        case 4:
 //            strcpy(interest, "FALL");
 //            printf("IN=FALL\n");
+//            cout<<flush;
 //            strcpy(v, "IN");
 //            instantiate();
 //            break;
@@ -211,12 +223,14 @@
 //        case 5:
 //            strcpy(interest, "FALL");
 //            printf("IN=FALL\n");
+//            cout<<flush;
 //            strcpy(v, "IN");
 //            instantiate();
 //            break;
 //        case 6:
 //            strcpy(po, "YES");
 //            printf("PO=YES\n");
+//            cout<<flush;
 //            break;
 //            /*********** comment 1610 ***********/
 //        }
@@ -265,22 +279,27 @@
 //            /* input statements for sample position knowledge base */
 //        case 1:
 //            printf("RISE OR FALL FOR DO? ");
+//            cout<<flush;
 //            gets(dollar);
 //            break;
 //        case 2:
 //            printf("RISE OR FALL FOR FT? ");
+//            cout<<flush;
 //            gets(fedint);
 //            break;
 //        case 3:
 //            printf("ADD OR SUBTRACT FOR FM? ");
+//            cout<<flush;
 //            gets(fedmon);
 //            break;
 //        case 4:
 //            printf("RISE OR FALL FOR IN? ");
+//            cout<<flush;
 //            gets(interest);
 //            break;
 //        case 5:
 //            printf("RISE OR FALL FOR ST? ");
+//            cout<<flush;
 //            gets(stock);
 //            break;
 //        }
@@ -328,7 +347,7 @@
 //    i = 1;
 //
 //    /* determine if (v) is or already has been on the queue (cndvar) */
-//    while ((strcmp(v, cndvar[i] != 0) && (i <= 10)) i=i+1;
+//    while ((strcmp(v, cndvar[i]) != 0) && (i <= 10)) i=i+1;
 //    /* variable has not been on the queue. Store it in the back of the queue */
 //    if (strcmp(v, cndvar[i]) != 0)
 //    {
