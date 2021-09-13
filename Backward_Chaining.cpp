@@ -120,7 +120,7 @@
 //	cls_stack.push(1);
 //}
 //
-//void instantiate_curr_variable()
+//void instantiate_curr_variable_()
 //{
 //	cout << "Input YES or NO for " << curr_variable << endl << flush;
 //	cin >> variable_list[curr_variable];
@@ -171,6 +171,11 @@
 //	bool conclusion_found = false;
 //	next_statement_number = 1;
 //	determine_member_conclusion_list();
+//	if (statement_number == 0)
+//	{
+//		cout << "NO CONCLUSION WAS FOUND."  << endl << flush;
+//		return 0;
+//	}
 //	push_on_stacks();
 //	while(!conclusion_found)
 //	{
@@ -199,6 +204,7 @@
 //		}
 //		else if (strcmp(conclusion_value_list[curr_variable].c_str(),"") != 0)
 //		{
+//			statement_number = stmt_stack.top();
 //			if (strcmp(conclusion_value_list[curr_variable].c_str(), rules[statement_number][cls_stack.top() - 1].c_str()) == 0)
 //			{
 //				int curr_clause = cls_stack.top() + 1;
@@ -222,7 +228,7 @@
 //			}
 //		}
 //		statement_number = stmt_stack.top();
-//		if (strcmp(variable_list[curr_variable].c_str(), "") == 0)	instantiate_curr_variable();
+//		if (strcmp(variable_list[curr_variable].c_str(), "") == 0)	instantiate_curr_variable_();
 //		if (strcmp(variable_list[curr_variable].c_str(), rules[statement_number][cls_stack.top() - 1].c_str()) == 0)
 //		{
 //			int curr_clause = cls_stack.top() + 1;
