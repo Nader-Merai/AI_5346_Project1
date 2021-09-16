@@ -23,6 +23,7 @@ class BackwardsChaining : public InferenceEngine
 		stack<int> stmt_stack, cls_stack;
 		void DetermineMemberConclusionList();
 		void PushOnStacks();
+		void PrintIntermediateResults();
 
 
 };

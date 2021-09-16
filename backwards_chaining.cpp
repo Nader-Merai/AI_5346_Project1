@@ -20,6 +20,39 @@ void BackwardsChaining::PushOnStacks()
 	cls_stack.push(1);
 }
 
+void BackwardsChaining::PrintIntermediateResults()
+{
+	std::cout << "\nVariable List:\n";
+	for (auto& t : variable_list)
+	    std::cout << t.first << ": "
+	              << t.second <<"\n";
+
+	std::cout << "\nStatement Stack:\n";
+	stack<int> stmt_stack_tmp = stmt_stack;
+	while(!stmt_stack_tmp.empty())
+	{
+	    int top_element = stmt_stack_tmp.top();
+	    std::cout << top_element << endl;
+	    stmt_stack_tmp.pop();
+	}
+
+	std::cout << "\nClause Stack:\n";
+	stack<int> cls_stack_tmp = cls_stack;
+	while(!cls_stack_tmp.empty())
+	{
+		int top_element = cls_stack_tmp.top();
+		std::cout << top_element << endl;
+		cls_stack_tmp.pop();
+	}
+
+	std::cout << "\nStatement Number:\n";
+	cout << statement_number << endl << flush;
+
+	std::cout << "\nNext Statement Number:\n";
+	cout << next_statement_number << endl << endl << flush;
+
+}
+
 string BackwardsChaining::StartBackwardChaining()
 {
 	unsigned int i;
@@ -63,6 +96,7 @@ string BackwardsChaining::StartBackwardChaining()
 	PushOnStacks();
 	while(!conclusion_found)
 	{
+		PrintIntermediateResults();
 		i = (stmt_stack.top() - 1) * 5 + cls_stack.top();
 		curr_variable = clause_variable_list[i];
 		if (strcmp(curr_variable.c_str(), "") == 0)
@@ -135,6 +169,8 @@ string BackwardsChaining::StartBackwardChaining()
 			PushOnStacks();
 		}
 	}
+
+	PrintIntermediateResults();
 
 	cout << "FINAL CONCLUSION " << curr_variable << " :" << conclusion_value_list[curr_variable] << endl << flush;
 

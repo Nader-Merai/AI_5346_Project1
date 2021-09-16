@@ -22,6 +22,7 @@ class ForwardChaining : public InferenceEngine
 		queue<string> conclusion_variable_q;
 		void SearchForVariable();
 		string condition_variable;
+		void PrintIntermediateResults();
 };
 
 

@@ -20,6 +20,30 @@ void ForwardChaining::InitializeConditionVariable(string init_value)
 	condition_variable = init_value;
 }
 
+void ForwardChaining::PrintIntermediateResults()
+{
+	std::cout << "\nVariable List:\n";
+	for (auto& t : variable_list)
+	    std::cout << t.first << ": "
+	              << t.second <<"\n";
+
+	std::cout << "\nConclusion Variable Queue Stack:\n";
+	queue<string> conclusion_variable_q_tmp = conclusion_variable_q;
+	while(!conclusion_variable_q_tmp.empty())
+	{
+	    string top_element = conclusion_variable_q_tmp.front();
+	    std::cout << top_element << endl;
+	    conclusion_variable_q_tmp.pop();
+	}
+
+	std::cout << "\nStatement Number:\n";
+	cout << statement_number_f << endl << flush;
+
+	std::cout << "\nClause Number:\n";
+	cout << clause_number << endl << endl << flush;
+
+}
+
 int ForwardChaining::StartForwardChaining(string condition_variable_value)
 {
 	unsigned int i;
@@ -49,13 +73,16 @@ int ForwardChaining::StartForwardChaining(string condition_variable_value)
 	statement_number_f = 0;
 	while (!conclusion_variable_q.empty())
 	{
+		PrintIntermediateResults();
 		SearchForVariable();
 		if (statement_number_f == 0)
 		{
 			break;
+			conclusion_variable_q.pop();
 		}
 		do
 		{
+			PrintIntermediateResults();
 			clause_number++;
 			curr_variable = clause_variable_list[(statement_number_f - 1)*5 + clause_number];
 			if (strcmp(curr_variable.c_str(), "") == 0) break;
@@ -74,7 +101,7 @@ int ForwardChaining::StartForwardChaining(string condition_variable_value)
 	}
 
 
-
+	PrintIntermediateResults();
 	return 0;
 }
 
