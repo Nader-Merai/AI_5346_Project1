@@ -63,7 +63,7 @@ void BackwardsChaining::InstantiatedCurrVariable()
 string BackwardsChaining::StartBackwardChaining()
 {
 	unsigned int i;
-
+	// Printing out the shape of the read data structures
 	cout << "Conclusion List:" << endl;
 	for (i = 1; i < conclusion_list.size(); i++)
 		cout << "Conclusion number " << i << ": " << conclusion_list[i] << endl;
@@ -94,6 +94,7 @@ string BackwardsChaining::StartBackwardChaining()
 	curr_variable = main_conclusion;
 	bool conclusion_found = false;
 	next_statement_number = 1;
+	// initialization of the variables prior to entering the loop
 	DetermineMemberConclusionList();
 	if (statement_number == 0)
 	{
@@ -105,9 +106,12 @@ string BackwardsChaining::StartBackwardChaining()
 	{
 		i = (stmt_stack.top() - 1) * 5 + cls_stack.top();
 		curr_variable = clause_variable_list[i];
+		// this means that we reached the end of the rule since an empty string seperates between rules in the clause variable list
+		// which means rule applies, so pop from stacks and continue
 		if (strcmp(curr_variable.c_str(), "") == 0)
 		{
 			curr_variable = conclusion_list[stmt_stack.top()];
+			// the conclusion value list is a map for storing all consequents' values just so we don't have to query them over and over again in case we need to
 			conclusion_value_list[curr_variable] = rules[statement_number][cls_stack.top() - 1];
 			if (curr_variable == main_conclusion) break;
 			stmt_stack.pop();
@@ -120,15 +124,19 @@ string BackwardsChaining::StartBackwardChaining()
 		next_statement_number = 1;
 		DetermineMemberConclusionList();
 		next_statement_number = tmp;
+
+		// statement is a consequent which wasn't queried before
 		if (statement_number != 0 &&
 				strcmp(conclusion_value_list[curr_variable].c_str(),"") == 0)
 		{
 			PushOnStacks();
 			continue;
 		}
+		// statement is a consequent which was queried before, meaning we have its value stored in the conclusion_value_list
 		else if (statement_number != 0 && strcmp(conclusion_value_list[curr_variable].c_str(),"") != 0)
 		{
 			statement_number = stmt_stack.top();
+			// values matched so go into the next clause variable
 			if (strcmp(conclusion_value_list[curr_variable].c_str(), rules[statement_number][cls_stack.top() - 1].c_str()) == 0)
 			{
 				int curr_clause = cls_stack.top() + 1;
@@ -149,10 +157,14 @@ string BackwardsChaining::StartBackwardChaining()
 					return "NOTHING";
 				}
 				PushOnStacks();
+				continue;
 			}
 		}
+
+		// variable is not a consequent, so we look for it in the variable list or instantiate it
 		statement_number = stmt_stack.top();
 		if (strcmp(variable_list[curr_variable].c_str(), "") == 0)	InstantiatedCurrVariable();
+		// values matched so go into the next clause variable
 		if (strcmp(variable_list[curr_variable].c_str(), rules[statement_number][cls_stack.top() - 1].c_str()) == 0)
 		{
 			int curr_clause = cls_stack.top() + 1;

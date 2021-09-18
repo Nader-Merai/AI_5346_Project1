@@ -17,7 +17,7 @@ class ForwardChaining : public InferenceEngine
 		int StartForwardChaining(string condition_variable_value);
 		void InitializeConditionVariable(string init_value);
 	protected:
-		int statement_number_f{};
+		int statement_number{};
 		int clause_number{};
 		queue<string> conclusion_variable_q;
 		void SearchForVariable();

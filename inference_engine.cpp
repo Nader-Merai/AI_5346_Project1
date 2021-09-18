@@ -1,3 +1,5 @@
+// This file includes mainly parsing of different data structures used in the inference engine
+
 #include "inference_engine.h"
 
 void InferenceEngine::InitializeDummy()
