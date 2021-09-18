@@ -53,6 +53,13 @@ void BackwardsChaining::PrintIntermediateResults()
 
 }
 
+void BackwardsChaining::InstantiatedCurrVariable()
+{
+	PrintIntermediateResults();
+	cout << "Input YES or NO for " << curr_variable << endl << flush;
+	cin >> variable_list[curr_variable];
+}
+
 string BackwardsChaining::StartBackwardChaining()
 {
 	unsigned int i;
@@ -96,7 +103,6 @@ string BackwardsChaining::StartBackwardChaining()
 	PushOnStacks();
 	while(!conclusion_found)
 	{
-		PrintIntermediateResults();
 		i = (stmt_stack.top() - 1) * 5 + cls_stack.top();
 		curr_variable = clause_variable_list[i];
 		if (strcmp(curr_variable.c_str(), "") == 0)

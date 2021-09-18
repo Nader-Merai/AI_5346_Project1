@@ -89,8 +89,4 @@ void InferenceEngine::ParseClauses(string clause_variable_list_filename)
 }
 
 
-void InferenceEngine::InstantiatedCurrVariable()
-{
-	cout << "Input YES or NO for " << curr_variable << endl << flush;
-	cin >> variable_list[curr_variable];
-}
+

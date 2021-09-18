@@ -23,6 +23,7 @@ class ForwardChaining : public InferenceEngine
 		void SearchForVariable();
 		string condition_variable;
 		void PrintIntermediateResults();
+		void InstantiatedCurrVariable();
 };
 
 

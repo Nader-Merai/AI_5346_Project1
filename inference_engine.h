@@ -28,7 +28,6 @@ class InferenceEngine
 		unordered_map<string,string> variable_list, conclusion_value_list;
 		vector<string> conclusion_list;
 		vector<string> clause_variable_list;
-		void InstantiatedCurrVariable();
 
 };
 

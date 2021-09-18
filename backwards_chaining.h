@@ -24,6 +24,7 @@ class BackwardsChaining : public InferenceEngine
 		void DetermineMemberConclusionList();
 		void PushOnStacks();
 		void PrintIntermediateResults();
+		void InstantiatedCurrVariable();
 
 
 };

@@ -44,6 +44,13 @@ void ForwardChaining::PrintIntermediateResults()
 
 }
 
+void ForwardChaining::InstantiatedCurrVariable()
+{
+	PrintIntermediateResults();
+	cout << "Input YES or NO for " << curr_variable << endl << flush;
+	cin >> variable_list[curr_variable];
+}
+
 int ForwardChaining::StartForwardChaining(string condition_variable_value)
 {
 	unsigned int i;
@@ -73,7 +80,6 @@ int ForwardChaining::StartForwardChaining(string condition_variable_value)
 	statement_number_f = 0;
 	while (!conclusion_variable_q.empty())
 	{
-		PrintIntermediateResults();
 		SearchForVariable();
 		if (statement_number_f == 0)
 		{
@@ -82,7 +88,6 @@ int ForwardChaining::StartForwardChaining(string condition_variable_value)
 		}
 		do
 		{
-			PrintIntermediateResults();
 			clause_number++;
 			curr_variable = clause_variable_list[(statement_number_f - 1)*5 + clause_number];
 			if (strcmp(curr_variable.c_str(), "") == 0) break;
@@ -99,9 +104,6 @@ int ForwardChaining::StartForwardChaining(string condition_variable_value)
 		}
 
 	}
-
-
-	PrintIntermediateResults();
 	return 0;
 }
 
