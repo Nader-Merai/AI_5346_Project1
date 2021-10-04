@@ -104,7 +104,6 @@ int ForwardChaining::StartForwardChaining(string condition_variable_value)
 		{
 			condition_variable = conclusion_list[statement_number];
 			variable_list[condition_variable] = rules[statement_number][clause_number-1];
-			conclusion_variable_q.pop();
 			conclusion_variable_q.push(condition_variable);
 			cout << condition_variable << " = " << variable_list[condition_variable] << endl;
 		}
